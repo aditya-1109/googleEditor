@@ -34,7 +34,7 @@ const Dashboard = () => {
       </Drawer>
 
       {/* Main Content */}
-      <div style={{ flexGrow: 1, padding: 20 , display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", width: "80vw", }}>
+      <div style={{ flexGrow: 1, padding: 20 , display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column", width: "80vw", }}>
       <Typography variant="h2" sx={{m: 5}}>Letter App</Typography>
         <AppBar position="static">
         

@@ -4,14 +4,30 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 const clientId = "712020369481-cc2ff6uqodrppe0jcen2qqqedb1bakbt.apps.googleusercontent.com";
 
 const Login = () => {
-  const handleSuccess = (response) => {
+  const handleSuccess = async (response) => {
     console.log("Login Success:", response);
-    fetch("https://editor-backend-woad.vercel.app//auth/google", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: response.credential }),
-    });
-  };
+
+    try {
+        const res = await fetch("https://editor-backend-woad.vercel.app/auth/google", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: response.credential }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            
+            localStorage.setItem("token", data.token);
+            console.log("Token stored:", data.token);
+        } else {
+            console.error("Login failed:", data.message);
+        }
+    } catch (error) {
+        console.error("Error during login:", error);
+    }
+};
+
 
   const handleFailure = (error) => {
     console.log("Login Failed:", error);

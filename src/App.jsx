@@ -1,22 +1,43 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./login.jsx";
-import Dashboard from "./dashboard.jsx";
-import CreateLetter from "./createLetter.jsx";
-import UploadToDrive from "./uploadToDrive.jsx";
+import ProtectedRoute from "./protected";
+import Dashboard from "./dashboard";
+import Login from "./Login";
+import CreateLetter from "./CreateLetter";
+import UploadToDrive from "./uploadToDrive";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/editor" element={<CreateLetter />} />
-          <Route path="/upload" element= {<UploadToDrive />} />
-        </Routes>
-      </div>
+      <Routes>
+        {/* Protected routes - Only accessible if logged in */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor"
+          element={
+            <ProtectedRoute>
+              <CreateLetter />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <ProtectedRoute>
+              <UploadToDrive />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Public route - Login */}
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
 }
