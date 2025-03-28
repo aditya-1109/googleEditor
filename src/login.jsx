@@ -6,7 +6,7 @@ const clientId = "712020369481-cc2ff6uqodrppe0jcen2qqqedb1bakbt.apps.googleuserc
 const Login = () => {
   const handleSuccess = (response) => {
     console.log("Login Success:", response);
-    fetch("http://localhost:5000/auth/google", {
+    fetch("https://editor-backend-woad.vercel.app//auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: response.credential }),

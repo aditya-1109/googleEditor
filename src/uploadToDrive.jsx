@@ -17,7 +17,7 @@ const UploadToDrive = () => {
     try {
       const letter = localStorage.getItem("draftLetter") || "No content available.";
       
-      const response = await axios.post("http://localhost:5000/auth/upload", { letter });
+      const response = await axios.post("https://editor-backend-woad.vercel.app/auth/upload", { letter });
 
       if (response.data.success) {
         setMessage("Letter successfully uploaded to Google Drive!");
