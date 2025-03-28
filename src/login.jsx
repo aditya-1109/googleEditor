@@ -35,7 +35,7 @@ const Login = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      <div>
+      <div style={{display: "flex",gap: "30px", justifyContent: "center", alignItems:"center"}}>
         <h2>Google Login</h2>
         <GoogleLogin onSuccess={handleSuccess} onError={handleFailure} />
       </div>
